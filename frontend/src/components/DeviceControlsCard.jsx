@@ -8,8 +8,7 @@ import {
   Maximize2, 
   RotateCcw, 
   Sparkles,
-  X,
-  Filter
+  X
 } from 'lucide-react';
 
 export default function DeviceControlsCard({
@@ -84,7 +83,11 @@ export default function DeviceControlsCard({
           <div className="min-w-0">
             <div className="flex items-center gap-2 flex-wrap">
               <h3 className="text-sm font-bold text-white tracking-wide truncate">
-                Smart Actuator Controls
+                {deviceFilter === 'lights' 
+                  ? 'Light Actuator Controls (Daylight LDR)' 
+                  : deviceFilter === 'fans' 
+                    ? 'Fan Actuator Controls (Climate Modulation)' 
+                    : 'Smart Actuator Controls'}
               </h3>
               <span className={`text-[10px] font-mono px-2 py-0.5 rounded-full font-semibold flex-shrink-0 ${
                 isHardwareMode
@@ -93,9 +96,18 @@ export default function DeviceControlsCard({
               }`}>
                 {isHardwareMode ? 'ESP32 Nodes' : 'Simulated'}
               </span>
+              {deviceFilter !== 'all' && (
+                <span className="text-[10px] font-mono px-2 py-0.5 rounded-full bg-cyan-950 text-cyan-300 border border-cyan-700/60 font-semibold">
+                  {deviceFilter === 'lights' ? '💡 Light Only' : '🌀 Fan Only'}
+                </span>
+              )}
             </div>
             <p className="text-[11px] text-slate-400 truncate">
-              Direct tactile controls with immediate feedback &amp; smooth sliders
+              {deviceFilter === 'lights' 
+                ? 'Displaying only light-related controllers (Illumination & Curtains)' 
+                : deviceFilter === 'fans' 
+                  ? 'Displaying only fan-related controllers (DC Fans & Exhaust)' 
+                  : 'Direct tactile controls with immediate feedback & smooth sliders'}
             </p>
           </div>
         </div>

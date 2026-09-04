@@ -53,17 +53,17 @@ async def dismiss_emergency(req: DismissRequest):
     }
 
 @router.post("/ambulance/call")
-async def call_ambulance_108():
+async def call_emergency_sos():
     """
-    Called when the user clicks 'Call Ambulance (108)' on the emergency modal.
-    Returns dispatch payload and initiates cellular/SIP dialer.
+    Called when the user clicks 'SOS Emergency Call' on the emergency modal or Scenario 8.
+    Returns dispatch payload and initiates emergency dialer.
     """
     return {
-        "status": "AMBULANCE_108_DISPATCHED",
-        "service": "National Emergency Ambulance Service (108)",
-        "contact_number": settings.AMBULANCE_NUMBER,
-        "dial_action": settings.AMBULANCE_DIAL_URI,
+        "status": "SOS_EMERGENCY_CALL_TRIGGERED",
+        "service": "Emergency Response & Rescue Services",
+        "contact_number": settings.PERSONAL_EMERGENCY_CONTACT,
+        "dial_action": f"tel:{settings.PERSONAL_EMERGENCY_CONTACT}",
         "incident_address": f"Lat: {settings.RESIDENTIAL_GPS_LAT}, Lon: {settings.RESIDENTIAL_GPS_LON}",
         "google_maps_route": settings.GOOGLE_MAPS_EMERGENCY_URL,
-        "message": "108 Ambulance service alerted with live GPS coordinates and patient camera evidence."
+        "message": "Emergency rescue services alerted with live GPS coordinates and patient camera evidence."
     }

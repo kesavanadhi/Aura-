@@ -12,7 +12,9 @@
     "*.ino": "cpp"
   },
   "C_Cpp.errorSquiggles": "disabled",
-  "C_Cpp.intelliSenseEngine": "Tag Parser",
+  "C_Cpp.intelliSenseEngine": "disabled",
+  "C_Cpp.dimInactiveClauses": false,
+  "C_Cpp.configurationWarnings": "disabled",
   "clang.enable": false,
   "clang.diagnostic.enable": false
 }

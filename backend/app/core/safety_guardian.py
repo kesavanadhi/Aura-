@@ -86,7 +86,7 @@ class SafetyGuardian:
                 gps_coordinates=f"{settings.RESIDENTIAL_GPS_LAT}° N, {settings.RESIDENTIAL_GPS_LON}° E",
                 google_maps_url=settings.GOOGLE_MAPS_EMERGENCY_URL
             ),
-            contacts_notified=["Personal Contact: " + settings.PERSONAL_EMERGENCY_CONTACT, "Ambulance Emergency: 108"]
+            contacts_notified=["Personal Contact: " + settings.PERSONAL_EMERGENCY_CONTACT, "Emergency Services Dispatch"]
         )
         self.active_hazard_incident = incident
         return incident
@@ -106,7 +106,7 @@ class SafetyGuardian:
             draw.text((35, 180), f"TIMESTAMP: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}", fill=(200, 200, 200))
             draw.text((35, 230), "STATUS: EXHAUST VENTILATION & ALARM ENGAGED", fill=(0, 255, 255))
             draw.text((35, 280), f"GPS: {settings.RESIDENTIAL_GPS_LAT}N, {settings.RESIDENTIAL_GPS_LON}E", fill=(180, 180, 180))
-            draw.text((35, 360), "EMERGENCY HOTLINE 108 NOTIFICATION DISPATCHED", fill=(0, 255, 100))
+            draw.text((35, 360), "EMERGENCY HOTLINE RESCUE NOTIFICATION DISPATCHED", fill=(0, 255, 100))
             img.save(str(path), "JPEG")
         except Exception:
             with open(path, "wb") as f:

@@ -7,20 +7,10 @@ import {
   ChevronUp, 
   ArrowRight, 
   Compass, 
-  Sparkles,
-  ExternalLink,
-  Search,
-  CheckCircle2,
-  X,
-  Sliders,
-  ShieldAlert,
-  Layers,
-  Mic,
-  Zap,
-  PhoneCall,
-  Video,
-  Lightbulb,
-  Fan
+  ExternalLink, 
+  Search, 
+  X, 
+  PhoneCall 
 } from 'lucide-react';
 
 export default function JuryDemoControls({ 
@@ -137,12 +127,12 @@ export default function JuryDemoControls({
       desc: "Multimodal triage summarizes resident visual evidence. Features SOS button to immediately trigger the emergency call.",
       sensorTrigger: "Unresponsive Resident Post-Fall Confirmation",
       aiDecision: "Emergency Triage Pipeline -> Multimodal Incident Briefing",
-      actuatorAction: "Trigger SOS Emergency Call | 108 Helpline Dispatch Ready",
+      actuatorAction: "Trigger SOS Emergency Call | Emergency Services & Rescue Dispatched",
       flow: ["Multimodal Triage", "Resident Visual Snapshot", "SOS Emergency Call Triggered", "GPS Transmitted"],
       targetCard: "card-fall-ai",
       targetTab: "fall",
       isSOS: true,
-      targetDesc: "Critical Fall Alert & SOS Dispatch"
+      targetDesc: "Critical Fall Alert & SOS Emergency Call"
     },
     {
       id: 9,

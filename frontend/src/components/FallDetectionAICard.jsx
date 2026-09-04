@@ -4,23 +4,12 @@ import {
   Video, 
   Radio, 
   AlertTriangle, 
-  ShieldAlert, 
-  PhoneCall, 
   Sparkles, 
-  CheckCircle2, 
   RefreshCw, 
-  Eye, 
-  Layers, 
-  Zap, 
-  ExternalLink 
+  Eye 
 } from 'lucide-react';
 
-export default function FallDetectionAICard({ 
-  onTriggerSOS, 
-  onSimulateFall, 
-  activeEmergency, 
-  userLocation 
-}) {
+export default function FallDetectionAICard() {
   const [feedMode, setFeedMode] = useState('laptop_camera'); // 'laptop_camera' | 'edge_clip' | 'snapshot'
   const [isCameraActive, setIsCameraActive] = useState(false);
   const [cameraError, setCameraError] = useState(null);
@@ -245,16 +234,12 @@ export default function FallDetectionAICard({
           </div>
         </div>
 
-        {/* Big Pulsing SOS Button */}
-        <button
-          id="btn-sos-emergency-call"
-          onClick={onTriggerSOS}
-          className="flex items-center gap-2 px-5 py-2.5 rounded-xl bg-gradient-to-r from-red-600 via-rose-600 to-red-700 hover:from-red-500 hover:to-rose-500 text-white font-extrabold text-xs uppercase tracking-wider transition-all shadow-lg shadow-red-600/40 active:scale-95 glow-red border border-red-400/50"
-          title="Click to trigger emergency SOS call immediately"
-        >
-          <PhoneCall className="w-4 h-4 animate-bounce" />
-          <span>🚨 SOS EMERGENCY CALL</span>
-        </button>
+        <div className="flex items-center gap-2">
+          <span className="text-xs font-mono px-3 py-1.5 rounded-xl bg-slate-900 border border-white/10 text-slate-300 flex items-center gap-2">
+            <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+            <span>Pose Stream Active</span>
+          </span>
+        </div>
       </div>
 
       {/* Camera Mode Toggle Controls */}
@@ -400,43 +385,43 @@ export default function FallDetectionAICard({
           </p>
         </div>
 
-        {/* Metric 3: Emergency Status */}
-        <div className="glass-card rounded-xl p-3 border border-red-500/20 bg-red-950/20">
-          <span className="text-[10px] text-red-400 uppercase block font-semibold mb-0.5">Emergency Status</span>
-          <span className="text-sm font-bold text-white flex items-center gap-1.5">
-            <ShieldAlert className="w-4 h-4 text-red-400 animate-pulse" />
-            SOS Protocol Ready
+        {/* Metric 3: Fall Dwell & Body Tilt */}
+        <div className="glass-card rounded-xl p-3 border border-white/[0.06]">
+          <span className="text-[10px] text-slate-500 uppercase block font-semibold mb-0.5">Ground Dwell & Tilt</span>
+          <span className="text-sm font-bold text-amber-400 flex items-center gap-1.5">
+            {tiltAngle}° Tilt • {groundDwellSec}s Dwell
           </span>
-          <p className="text-[10px] text-slate-300 mt-1 font-sans">
-            Local piezo buzzer sounding &amp; bedroom lights forced ON.
+          <p className="text-[10px] text-slate-400 mt-1 font-sans">
+            Continuous multi-frame pose tracking confirms floor proximity.
           </p>
         </div>
 
       </div>
 
-      {/* SOS Dispatch Action Banner */}
-      <div className="p-4 rounded-xl bg-gradient-to-r from-red-950/60 via-slate-900/90 to-red-950/60 border border-red-500/40 flex flex-col sm:flex-row items-center justify-between gap-3 shadow-lg">
+      {/* Live Pose Tracking Pipeline Info Banner */}
+      <div className="p-3.5 rounded-xl bg-slate-900/80 border border-white/[0.08] flex flex-col sm:flex-row items-center justify-between gap-3 shadow-md font-mono text-xs">
         <div className="flex items-center gap-3">
-          <div className="p-2.5 rounded-xl bg-red-600/20 border border-red-500/60 text-red-400">
-            <AlertTriangle className="w-5 h-5 animate-pulse" />
+          <div className="p-2 rounded-xl bg-cyan-500/10 border border-cyan-500/30 text-cyan-400">
+            <Sparkles className="w-4 h-4" />
           </div>
           <div>
             <span className="text-xs font-bold text-white tracking-wide block font-sans">
-              Critical Emergency Fall Response Protocol
+              Edge Computer Vision Pose Inference
             </span>
-            <span className="text-[11px] text-slate-400 font-mono">
-              Click the SOS button to instantly dispatch emergency helpline &amp; transmit live GPS coordinates
+            <span className="text-[11px] text-slate-400">
+              Capturing sub-30ms 33-landmark skeleton via laptop camera or edge clip
             </span>
           </div>
         </div>
 
-        <button
-          onClick={onTriggerSOS}
-          className="px-6 py-3 rounded-xl bg-gradient-to-r from-red-600 to-rose-600 hover:from-red-500 hover:to-rose-500 text-white font-black text-xs uppercase tracking-wider flex items-center gap-2 shadow-lg shadow-red-600/50 active:scale-95 whitespace-nowrap glow-red border border-red-400/60"
-        >
-          <PhoneCall className="w-4 h-4 animate-bounce" />
-          <span>🚨 SOS EMERGENCY CALL</span>
-        </button>
+        <div className="flex items-center gap-2 text-[11px] text-slate-300">
+          <span className="px-2 py-1 rounded bg-slate-950 border border-white/10 text-cyan-300 font-semibold">
+            {isCameraActive ? '📹 Webcam Stream' : '📼 Pose Clip Stream'}
+          </span>
+          <span className="px-2 py-1 rounded bg-slate-950 border border-white/10 text-emerald-400 font-semibold">
+            33 Keypoints Tracking
+          </span>
+        </div>
       </div>
 
     </div>

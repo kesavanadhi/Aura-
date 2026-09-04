@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { AlertTriangle, PhoneCall, CheckCircle, MapPin, Sparkles, X, ExternalLink, Video, Camera, Radio } from 'lucide-react';
+import { AlertTriangle, PhoneCall, CheckCircle, MapPin, Sparkles, X, ExternalLink, Camera, Radio } from 'lucide-react';
 
 export default function FallEmergencyModal({ incident, onDismiss, onCallAmbulance, userLocation }) {
   const [viewMode, setViewMode] = useState('live'); // 'live' or 'snapshot'
@@ -131,7 +131,7 @@ export default function FallEmergencyModal({ incident, onDismiss, onCallAmbulanc
             </div>
           </div>
 
-          {/* Right Column: AI Triage & 108 Emergency Dispatch */}
+          {/* Right Column: AI Triage & SOS Emergency Dispatch */}
           <div className="flex flex-col justify-between gap-3">
             {/* Google Gemini AI Triage Briefing */}
             <div className="bg-blue-950/25 p-3.5 rounded-xl border border-blue-800/60">
@@ -153,7 +153,7 @@ export default function FallEmergencyModal({ incident, onDismiss, onCallAmbulanc
               </div>
               <div className="flex items-center gap-2 text-emerald-400">
                 <CheckCircle className="w-3.5 h-3.5 flex-shrink-0" />
-                <span>Emergency SOS Hotline: Live Geo-Packet & Rescue Ready</span>
+                <span>Emergency Rescue Services: Live Geo-Packet & Rescue Ready</span>
               </div>
               <a
                 href="https://maps.app.goo.gl/D9f7LoYF84iTTBmq9"

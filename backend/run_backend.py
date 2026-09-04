@@ -13,7 +13,7 @@ if __name__ == "__main__":
     print(f"  {settings.PROJECT_NAME} — {settings.PROJECT_TITLE}")
     print(f"  Version: {settings.VERSION} | Core Cycle: Sense -> Understand -> Act")
     print(f"  Strict Sensor Exclusions: Zero Water Leakage | Zero Magnetic Door")
-    print(f"  Emergency Ambulance Integration: 108 Hotline Active")
+    print(f"  Emergency Call Integration: SOS Rescue Dispatch Active")
     print("=" * 70)
     uvicorn.run(
         "app.main:app",

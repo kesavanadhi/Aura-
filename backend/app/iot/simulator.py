@@ -112,14 +112,14 @@ class HackathonScenarioSimulator:
         }
 
     def step9_call_ambulance_108(self) -> Dict[str, Any]:
-        """Step 9: User clicks 'Call Ambulance (108)' button."""
+        """Step 9: User clicks 'SOS Emergency Call' button."""
         return {
             "step": 9,
-            "action": "DIAL_108",
-            "number": "108",
+            "action": "TRIGGER_SOS_EMERGENCY_CALL",
+            "number": "EMERGENCY_SERVICES",
             "gps": "12.9716° N, 77.5946° E",
             "google_maps_url": "https://www.google.com/maps/search/?api=1&query=12.9716,77.5946",
-            "status": "AMBULANCE_DISPATCH_ALERT_TRANSMITTED"
+            "status": "SOS_EMERGENCY_CALL_DISPATCHED"
         }
 
     def step10_gas_leak_hazard(self) -> Dict[str, Any]:

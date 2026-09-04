@@ -21,13 +21,7 @@ import {
   Zap, 
   Mic, 
   Activity,
-  HelpCircle,
-  X,
   Sparkles,
-  ArrowRight,
-  CheckCircle2,
-  AlertTriangle,
-  Info,
   Video
 } from 'lucide-react';
 
@@ -326,12 +320,12 @@ export default function App() {
     }
   };
 
-  const handleCallAmbulance = async () => {
+  const handleTriggerEmergencyCall = async () => {
     try {
       await fetch('http://localhost:8000/api/emergency/ambulance/call', { method: 'POST' });
-      alert(`108 EMERGENCY HELPLINE DISPATCHED!\nResident Location: ${userLocation.areaName}\nLive Google Maps Route: ${userLocation.mapsUrl}`);
+      alert(`🚨 SOS EMERGENCY CALL TRIGGERED!\nResident Location: ${userLocation.areaName}\nEmergency Response Dispatched • Live GPS Route: ${userLocation.mapsUrl}`);
     } catch (err) {
-      alert("Dialing 108 Emergency Ambulance Helpline...");
+      alert("🚨 SOS Emergency Call Triggered — Contacting Emergency Services & Contacts...");
     }
   };
 
@@ -353,18 +347,28 @@ export default function App() {
     // Apply device filter if specified
     if (filter) {
       setDeviceFilter(filter);
+    } else if (stepId === 2) {
+      setDeviceFilter('lights');
+    } else if (stepId === 3) {
+      setDeviceFilter('fans');
     } else if (targetTab === 'controls') {
       setDeviceFilter('all');
     }
 
-    // Critical Fall Alert & Triage initialization
+    if (stepId === 7) {
+      // Scenario 7: Fall Detection AI (Laptop Camera Pose Stream ONLY)
+      // Clear emergency modal so it does not block the pose stream
+      setActiveEmergency(null);
+    }
+
+    // Critical Fall Alert & Triage initialization (Scenario 8)
     if (stepId === 8) {
       setActiveEmergency({
         type: 'POSSIBLE_FALL',
         person: 'Registered Resident',
         room: 'Bedroom',
         timestamp: new Date().toLocaleTimeString(),
-        gemini_triage_summary: 'Subject detected in horizontal prone posture. Immediate SOS dispatch recommended.',
+        gemini_triage_summary: 'Subject detected in horizontal prone posture. Immediate SOS emergency call dispatch recommended.',
         ambulance_dispatch: {
           gps_coordinates: `${userLocation.lat?.toFixed(4)}, ${userLocation.lon?.toFixed(4)}`,
           status: 'SOS_READY'
@@ -435,7 +439,7 @@ export default function App() {
       <Navbar
         isEmergency={activeEmergency !== null}
         hasAttentionRequired={hasAttentionRequired}
-        onAmbulanceClick={handleCallAmbulance}
+        onAmbulanceClick={handleTriggerEmergencyCall}
         simMode={simMode}
         setSimMode={handleModeSwitch}
         hardwareStatus={hardwareStatus}
@@ -453,7 +457,7 @@ export default function App() {
           activeStep={activeStep}
           simMode={simMode}
           activeTargetInfo={activeTargetInfo}
-          onTriggerSOS={handleCallAmbulance}
+          onTriggerSOS={handleTriggerEmergencyCall}
         />
 
         {/* Primary Horizontal Navigation Tabs (Dedicated Views) */}
@@ -485,7 +489,11 @@ export default function App() {
             </button>
 
             <button
-              onClick={() => setActiveTab('controls')}
+              onClick={() => {
+                setActiveTab('controls');
+                if (activeStep === 2) setDeviceFilter('lights');
+                else if (activeStep === 3) setDeviceFilter('fans');
+              }}
               className={`flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg transition-all ${
                 activeTab === 'controls'
                   ? 'bg-gradient-to-r from-cyan-600/30 to-blue-600/30 text-cyan-300 font-bold border border-cyan-500/40 shadow-sm'
@@ -521,7 +529,10 @@ export default function App() {
             </button>
 
             <button
-              onClick={() => setActiveTab('climate')}
+              onClick={() => {
+                setActiveTab('climate');
+                setDeviceFilter('fans');
+              }}
               className={`flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg transition-all ${
                 activeTab === 'climate'
                   ? 'bg-gradient-to-r from-cyan-600/30 to-blue-600/30 text-cyan-300 font-bold border border-cyan-500/40 shadow-sm'
@@ -822,17 +833,12 @@ export default function App() {
         )}
 
         {/* =========================================================================
-            VIEW 4: FALL DETECTION AI VIEW (LAPTOP CAMERA POSE & SOS)
+            VIEW 4: FALL DETECTION AI VIEW (LAPTOP CAMERA POSE)
            ========================================================================= */}
         {activeTab === 'fall' && (
           <div className="max-w-5xl mx-auto space-y-5">
             <div id="card-fall-ai" className={getCardWrapperClass('card-fall-ai')}>
-              <FallDetectionAICard
-                onTriggerSOS={handleCallAmbulance}
-                onSimulateFall={() => handleTriggerStep(7, 'card-fall-ai', 'Fall Pattern Confirmed', 'fall')}
-                activeEmergency={activeEmergency}
-                userLocation={userLocation}
-              />
+              <FallDetectionAICard />
             </div>
           </div>
         )}
@@ -859,14 +865,27 @@ export default function App() {
         )}
 
         {/* =========================================================================
-            VIEW 5: CLIMATE VIEW
+            VIEW 5: CLIMATE VIEW (CLIMATE METRICS & FAN MODULATION ONLY)
            ========================================================================= */}
         {activeTab === 'climate' && (
-          <div className="max-w-4xl mx-auto space-y-5">
+          <div className="max-w-5xl mx-auto space-y-5">
             <div id="card-environment-climate" className={getCardWrapperClass('card-environment-climate')}>
               <EnvironmentCard
                 telemetry={currentTelemetry}
                 actuators={actuators}
+              />
+            </div>
+            <div id="card-device-controls" className={getCardWrapperClass('card-device-controls')}>
+              <DeviceControlsCard
+                actuators={actuators}
+                deviceStates={deviceStates}
+                onToggleDevice={handleToggleDevice}
+                manualOverrides={manualOverrides}
+                onResetAutoMode={handleResetAutoMode}
+                isHardwareMode={!simMode}
+                isFullView={true}
+                deviceFilter="fans"
+                onSetDeviceFilter={setDeviceFilter}
               />
             </div>
           </div>
@@ -921,7 +940,7 @@ export default function App() {
         <FallEmergencyModal
           incident={activeEmergency}
           onDismiss={handleDismissEmergency}
-          onCallAmbulance={handleCallAmbulance}
+          onCallAmbulance={handleTriggerEmergencyCall}
           userLocation={userLocation}
         />
       )}

@@ -140,7 +140,7 @@ class EdgeFallDetector:
             draw.text((25, 30), "AURA EDGE AI - GOOGLE MEDIAPIPE POSE ESTIMATION", fill=(0, 255, 255))
             draw.text((25, 60), "STATUS: POSSIBLE FALL CONFIRMED", fill=(255, 50, 50))
             draw.text((25, 90), "TORSO ANGLE: 82.4 deg | ASPECT RATIO: 1.84", fill=(0, 255, 100))
-            draw.text((25, 440), f"ROOM: {room} | EMERGENCY HOTLINE: 108 AMBULANCE READY", fill=(255, 255, 0))
+            draw.text((25, 440), f"ROOM: {room} | EMERGENCY HOTLINE: RESCUE SERVICES READY", fill=(255, 255, 0))
             img.save(str(snapshot_path), "JPEG")
         except Exception:
             with open(snapshot_path, "wb") as f:
@@ -161,9 +161,9 @@ class EdgeFallDetector:
                 dial_action=settings.AMBULANCE_DIAL_URI,
                 gps_coordinates=f"{settings.RESIDENTIAL_GPS_LAT}° N, {settings.RESIDENTIAL_GPS_LON}° E",
                 google_maps_url=settings.GOOGLE_MAPS_EMERGENCY_URL,
-                status="108_AMBULANCE_READY"
+                status="SOS_EMERGENCY_READY"
             ),
-            contacts_notified=["Personal Contact: " + settings.PERSONAL_EMERGENCY_CONTACT, "108 Ambulance Dispatch"],
+            contacts_notified=["Personal Contact: " + settings.PERSONAL_EMERGENCY_CONTACT, "Emergency Services Dispatch"],
             resolved=False
         )
         self.active_emergency = incident
