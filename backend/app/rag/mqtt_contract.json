@@ -1,0 +1,63 @@
+{
+  "$schema": "aura/rag/mqtt_contract_v1",
+  "project": "AURA",
+  "broker": {
+    "default_port": 1883,
+    "keepalive": 60,
+    "protocol": "MQTTv311"
+  },
+  "topics": {
+    "zone1_telemetry": {
+      "topic": "aura/telemetry/node1",
+      "direction": "DEVICE_TO_GATEWAY",
+      "node": "esp32_node1",
+      "interval_ms": 1000,
+      "description": "Zone 1 real-time telemetry stream from ESP32"
+    },
+    "zone1_control": {
+      "topic": "aura/control/node1",
+      "direction": "GATEWAY_TO_DEVICE",
+      "node": "esp32_node1",
+      "description": "Zone 1 actuator commands to ESP32"
+    },
+    "zone1_status": {
+      "topic": "aura/status/node1",
+      "direction": "DEVICE_TO_GATEWAY",
+      "node": "esp32_node1",
+      "description": "Zone 1 physical actuator acknowledgement and state verification"
+    },
+    "zone2_telemetry": {
+      "topic": "aura/telemetry/node2",
+      "direction": "DEVICE_TO_GATEWAY",
+      "node": "esp8266_node2",
+      "interval_ms": 1000,
+      "description": "Zone 2 real-time telemetry stream from ESP8266"
+    },
+    "zone2_control": {
+      "topic": "aura/control/node2",
+      "direction": "GATEWAY_TO_DEVICE",
+      "node": "esp8266_node2",
+      "description": "Zone 2 actuator commands to ESP8266"
+    },
+    "zone2_status": {
+      "topic": "aura/status/node2",
+      "direction": "DEVICE_TO_GATEWAY",
+      "node": "esp8266_node2",
+      "description": "Zone 2 physical actuator acknowledgement and state verification"
+    },
+    "emergency": {
+      "topic": "aura/emergency",
+      "direction": "BIDIRECTIONAL",
+      "description": "Priority emergency broadcast (Fall, Fire, Gas, Panic Button)"
+    }
+  },
+  "allowed_topics": [
+    "aura/telemetry/node1",
+    "aura/control/node1",
+    "aura/status/node1",
+    "aura/telemetry/node2",
+    "aura/control/node2",
+    "aura/status/node2",
+    "aura/emergency"
+  ]
+}

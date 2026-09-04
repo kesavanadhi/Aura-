@@ -1,0 +1,89 @@
+{
+  "$schema": "aura/rag/actuator_contract_v1",
+  "project": "AURA",
+  "zone1": {
+    "node_id": "esp32_node1",
+    "topic": "aura/control/node1",
+    "supported_fields": {
+      "bedroom_light": {
+        "type": "boolean",
+        "allowed_values": [true, false],
+        "default": false
+      },
+      "hall_light": {
+        "type": "boolean",
+        "allowed_values": [true, false],
+        "default": false
+      },
+      "bedroom_fan_pwm": {
+        "type": "integer",
+        "min": 0,
+        "max": 255,
+        "default": 0,
+        "aliases": ["fan_speed_pwm"]
+      },
+      "hall_fan_pwm": {
+        "type": "integer",
+        "min": 0,
+        "max": 255,
+        "default": 0
+      },
+      "curtain_servo_angle": {
+        "type": "integer",
+        "min": 0,
+        "max": 90,
+        "default": 90,
+        "semantics": {
+          "0": "CLOSED",
+          "90": "OPEN"
+        }
+      },
+      "buzzer_active": {
+        "type": "boolean",
+        "allowed_values": [true, false],
+        "default": false
+      }
+    }
+  },
+  "zone2": {
+    "node_id": "esp8266_node2",
+    "topic": "aura/control/node2",
+    "supported_fields": {
+      "kitchen_light": {
+        "type": "boolean",
+        "allowed_values": [true, false],
+        "default": false
+      },
+      "bathroom_light": {
+        "type": "boolean",
+        "allowed_values": [true, false],
+        "default": false
+      },
+      "exhaust_fan_speed_pct": {
+        "type": "integer",
+        "min": 0,
+        "max": 100,
+        "default": 0,
+        "aliases": ["exhaust_fan"]
+      },
+      "exhaust_fan": {
+        "type": "boolean",
+        "allowed_values": [true, false],
+        "default": false,
+        "mapping": {
+          "true": 100,
+          "false": 0
+        }
+      }
+    }
+  },
+  "forbidden_fields": [
+    "water_valve",
+    "door_lock",
+    "ac_temperature",
+    "heater_pwm",
+    "window_motor",
+    "sprinkler",
+    "siren_frequency"
+  ]
+}

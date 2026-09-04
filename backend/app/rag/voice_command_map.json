@@ -1,0 +1,168 @@
+{
+  "$schema": "aura/rag/voice_command_map_v1",
+  "project": "AURA",
+  "commands": [
+    {
+      "phrases": ["turn on bedroom light", "bedroom light on", "switch on bedroom light", "illuminate bedroom"],
+      "intent": "CONTROL_ACTUATOR",
+      "zone": "zone1",
+      "topic": "aura/control/node1",
+      "actuator": "bedroom_light",
+      "payload": { "bedroom_light": true },
+      "spoken_feedback": "Bedroom light turned on."
+    },
+    {
+      "phrases": ["turn off bedroom light", "bedroom light off", "switch off bedroom light", "extinguish bedroom light"],
+      "intent": "CONTROL_ACTUATOR",
+      "zone": "zone1",
+      "topic": "aura/control/node1",
+      "actuator": "bedroom_light",
+      "payload": { "bedroom_light": false },
+      "spoken_feedback": "Bedroom light turned off."
+    },
+    {
+      "phrases": ["turn on hall light", "hall light on", "hallway light on", "switch on hall light"],
+      "intent": "CONTROL_ACTUATOR",
+      "zone": "zone1",
+      "topic": "aura/control/node1",
+      "actuator": "hall_light",
+      "payload": { "hall_light": true },
+      "spoken_feedback": "Hall light turned on."
+    },
+    {
+      "phrases": ["turn off hall light", "hall light off", "hallway light off", "switch off hall light"],
+      "intent": "CONTROL_ACTUATOR",
+      "zone": "zone1",
+      "topic": "aura/control/node1",
+      "actuator": "hall_light",
+      "payload": { "hall_light": false },
+      "spoken_feedback": "Hall light turned off."
+    },
+    {
+      "phrases": ["turn on kitchen light", "kitchen light on", "switch on kitchen light"],
+      "intent": "CONTROL_ACTUATOR",
+      "zone": "zone2",
+      "topic": "aura/control/node2",
+      "actuator": "kitchen_light",
+      "payload": { "kitchen_light": true },
+      "spoken_feedback": "Kitchen light turned on."
+    },
+    {
+      "phrases": ["turn off kitchen light", "kitchen light off", "switch off kitchen light"],
+      "intent": "CONTROL_ACTUATOR",
+      "zone": "zone2",
+      "topic": "aura/control/node2",
+      "actuator": "kitchen_light",
+      "payload": { "kitchen_light": false },
+      "spoken_feedback": "Kitchen light turned off."
+    },
+    {
+      "phrases": ["turn on bathroom light", "bathroom light on", "bath light on", "switch on bath light"],
+      "intent": "CONTROL_ACTUATOR",
+      "zone": "zone2",
+      "topic": "aura/control/node2",
+      "actuator": "bathroom_light",
+      "payload": { "bathroom_light": true },
+      "spoken_feedback": "Bathroom light turned on."
+    },
+    {
+      "phrases": ["turn off bathroom light", "bathroom light off", "bath light off", "switch off bath light"],
+      "intent": "CONTROL_ACTUATOR",
+      "zone": "zone2",
+      "topic": "aura/control/node2",
+      "actuator": "bathroom_light",
+      "payload": { "bathroom_light": false },
+      "spoken_feedback": "Bathroom light turned off."
+    },
+    {
+      "phrases": ["turn on kitchen exhaust", "start exhaust", "exhaust on", "kitchen exhaust on", "turn on exhaust"],
+      "intent": "CONTROL_ACTUATOR",
+      "zone": "zone2",
+      "topic": "aura/control/node2",
+      "actuator": "exhaust_fan_speed_pct",
+      "payload": { "exhaust_fan_speed_pct": 100 },
+      "spoken_feedback": "Kitchen exhaust fan activated at 100% speed."
+    },
+    {
+      "phrases": ["turn off kitchen exhaust", "stop exhaust", "exhaust off", "kitchen exhaust off", "turn off exhaust"],
+      "intent": "CONTROL_ACTUATOR",
+      "zone": "zone2",
+      "topic": "aura/control/node2",
+      "actuator": "exhaust_fan_speed_pct",
+      "payload": { "exhaust_fan_speed_pct": 0 },
+      "spoken_feedback": "Kitchen exhaust fan turned off."
+    },
+    {
+      "phrases": ["open bedroom curtains", "open curtains", "open curtain", "curtains open"],
+      "intent": "CONTROL_ACTUATOR",
+      "zone": "zone1",
+      "topic": "aura/control/node1",
+      "actuator": "curtain_servo_angle",
+      "payload": { "curtain_servo_angle": 90 },
+      "spoken_feedback": "Opening bedroom curtains."
+    },
+    {
+      "phrases": ["close bedroom curtains", "close curtains", "close curtain", "curtains close"],
+      "intent": "CONTROL_ACTUATOR",
+      "zone": "zone1",
+      "topic": "aura/control/node1",
+      "actuator": "curtain_servo_angle",
+      "payload": { "curtain_servo_angle": 0 },
+      "spoken_feedback": "Closing bedroom curtains."
+    },
+    {
+      "phrases": ["turn on bedroom fan", "bedroom fan on", "fan on", "room fan on"],
+      "intent": "CONTROL_ACTUATOR",
+      "zone": "zone1",
+      "topic": "aura/control/node1",
+      "actuator": "bedroom_fan_pwm",
+      "payload": { "bedroom_fan_pwm": 180 },
+      "spoken_feedback": "Bedroom fan turned on at medium speed."
+    },
+    {
+      "phrases": ["turn off bedroom fan", "bedroom fan off", "fan off", "room fan off"],
+      "intent": "CONTROL_ACTUATOR",
+      "zone": "zone1",
+      "topic": "aura/control/node1",
+      "actuator": "bedroom_fan_pwm",
+      "payload": { "bedroom_fan_pwm": 0 },
+      "spoken_feedback": "Bedroom fan turned off."
+    },
+    {
+      "phrases": ["turn on hall fan", "hall fan on", "hallway fan on"],
+      "intent": "CONTROL_ACTUATOR",
+      "zone": "zone1",
+      "topic": "aura/control/node1",
+      "actuator": "hall_fan_pwm",
+      "payload": { "hall_fan_pwm": 180 },
+      "spoken_feedback": "Hall fan turned on at medium speed."
+    },
+    {
+      "phrases": ["turn off hall fan", "hall fan off", "hallway fan off"],
+      "intent": "CONTROL_ACTUATOR",
+      "zone": "zone1",
+      "topic": "aura/control/node1",
+      "actuator": "hall_fan_pwm",
+      "payload": { "hall_fan_pwm": 0 },
+      "spoken_feedback": "Hall fan turned off."
+    },
+    {
+      "phrases": ["sound buzzer", "alarm on", "sound alarm", "activate buzzer"],
+      "intent": "CONTROL_ACTUATOR",
+      "zone": "zone1",
+      "topic": "aura/control/node1",
+      "actuator": "buzzer_active",
+      "payload": { "buzzer_active": true },
+      "spoken_feedback": "Rescue alarm buzzer activated."
+    },
+    {
+      "phrases": ["silence buzzer", "alarm off", "silence alarm", "turn off buzzer"],
+      "intent": "CONTROL_ACTUATOR",
+      "zone": "zone1",
+      "topic": "aura/control/node1",
+      "actuator": "buzzer_active",
+      "payload": { "buzzer_active": false },
+      "spoken_feedback": "Rescue alarm buzzer silenced."
+    }
+  ]
+}

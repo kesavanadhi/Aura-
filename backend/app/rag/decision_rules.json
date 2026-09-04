@@ -1,0 +1,52 @@
+{
+  "$schema": "aura/rag/decision_rules_v1",
+  "project": "AURA",
+  "reasoning_cycle": [
+    "OBSERVATION",
+    "VALIDATION",
+    "INTERPRETATION",
+    "DECISION",
+    "ACTION",
+    "VERIFICATION"
+  ],
+  "source_of_truth_priority": [
+    "1. LIVE DEVICE TELEMETRY",
+    "2. CURRENT ACTUATOR STATUS",
+    "3. FIRMWARE / HARDWARE CONTRACT",
+    "4. MQTT SCHEMA",
+    "5. AURA RULES / SAFETY RULES",
+    "6. RAG KNOWLEDGE BASE",
+    "7. USER COMMAND",
+    "8. GEMINI GENERAL KNOWLEDGE"
+  ],
+  "configured_thresholds": {
+    "lighting": {
+      "ldr_daylight_lux_cutoff": 650,
+      "description": "If ambient lux >= 650, natural light is sufficient. If lux < 650 and room is occupied, turn on light."
+    },
+    "climate_fans": {
+      "cold_winter_max_c": 22.0,
+      "moderate_min_c": 22.1,
+      "moderate_max_c": 26.0,
+      "warm_min_c": 26.1,
+      "warm_max_c": 30.0,
+      "hot_min_c": 30.1,
+      "fan_pwm_map": {
+        "COLD_WINTER": 0,
+        "MODERATE": 120,
+        "WARM": 180,
+        "HOT": 255
+      }
+    },
+    "gas_safety": {
+      "warning_ppm": 600,
+      "critical_ppm": 1200
+    },
+    "kitchen_exhaust": {
+      "temp_trigger_c": 26.0,
+      "temp_max_c": 45.0
+    },
+    "occupancy_timeout_seconds": 45
+  },
+  "missing_threshold_policy": "If no threshold exists in configured_thresholds, return 'LIGHTING THRESHOLD NOT CONFIGURED'. Never fabricate or invent thresholds."
+}

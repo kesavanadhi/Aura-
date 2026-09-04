@@ -1,0 +1,138 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer utilities {
+  .font-mono {
+    font-family: 'JetBrains Mono', monospace;
+  }
+}
+
+/* Modern Dark Aerospace / Tesla / Apple Home Visual Styling */
+:root {
+  color-scheme: dark;
+}
+
+body {
+  background-color: #07090E;
+  color: #E2E8F0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  overflow-x: hidden;
+}
+
+/* Custom glassmorphism styling with subtle border & depth */
+.glass-panel {
+  background: rgba(13, 19, 32, 0.72);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+}
+
+.glass-panel-subtle {
+  background: rgba(10, 14, 24, 0.55);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.04);
+}
+
+.glass-card {
+  background: rgba(18, 26, 44, 0.45);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.glass-card:hover {
+  background: rgba(22, 33, 58, 0.65);
+  border-color: rgba(6, 182, 212, 0.25);
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.4), 0 0 15px -3px rgba(6, 182, 212, 0.15);
+}
+
+/* Semantic Glow & Lighting */
+.glow-cyan {
+  box-shadow: 0 0 20px -3px rgba(6, 182, 212, 0.35);
+}
+
+.glow-emerald {
+  box-shadow: 0 0 20px -3px rgba(16, 185, 129, 0.35);
+}
+
+.glow-green {
+  box-shadow: 0 0 18px rgba(16, 185, 129, 0.45), inset 0 0 10px rgba(16, 185, 129, 0.15);
+  border-color: rgba(52, 211, 153, 0.7) !important;
+}
+
+.glow-yellow {
+  box-shadow: 0 0 16px rgba(245, 158, 11, 0.45), inset 0 0 8px rgba(245, 158, 11, 0.15);
+  border-color: rgba(251, 191, 36, 0.7) !important;
+}
+
+.glow-red {
+  box-shadow: 0 0 28px -2px rgba(239, 68, 68, 0.55);
+}
+
+.glow-red-active {
+  box-shadow: 0 0 24px rgba(239, 68, 68, 0.65), inset 0 0 12px rgba(239, 68, 68, 0.25);
+  border-color: rgba(248, 113, 113, 0.85) !important;
+}
+
+/* Fan Rotations */
+@keyframes spin-linear {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.fan-spin-slow {
+  animation: spin-linear 2.4s linear infinite;
+}
+
+.fan-spin-medium {
+  animation: spin-linear 1.2s linear infinite;
+}
+
+.fan-spin-fast {
+  animation: spin-linear 0.6s linear infinite;
+}
+
+.fan-spin-turbo {
+  animation: spin-linear 0.25s linear infinite;
+}
+
+/* Assistant Audio Waves */
+@keyframes assistant-wave {
+  0%, 100% { transform: scaleY(0.35); }
+  50% { transform: scaleY(1.0); }
+}
+
+.assistant-bar-1 { animation: assistant-wave 0.8s ease-in-out infinite 0.1s; }
+.assistant-bar-2 { animation: assistant-wave 0.8s ease-in-out infinite 0.25s; }
+.assistant-bar-3 { animation: assistant-wave 0.8s ease-in-out infinite 0.4s; }
+.assistant-bar-4 { animation: assistant-wave 0.8s ease-in-out infinite 0.55s; }
+
+/* Pulse & Breathing */
+@keyframes pulse-subtle {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.88; transform: scale(1.015); }
+}
+
+.animate-pulse-subtle {
+  animation: pulse-subtle 2.5s infinite ease-in-out;
+}
+
+/* Custom Smooth Dark Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(7, 9, 14, 0.8);
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.12);
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(6, 182, 212, 0.4);
+}

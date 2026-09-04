@@ -1,0 +1,33 @@
+{
+  "$schema": "aura/rag/safety_rules_v1",
+  "project": "AURA",
+  "priority": {
+    "level": 1,
+    "override_all_normal_rules": true,
+    "cannot_be_overridden_by_ai": true
+  },
+  "emergency_triggers": [
+    "POSSIBLE_FALL",
+    "GAS_LEAK_LPG",
+    "SMOKE_HAZARD",
+    "THERMAL_FIRE",
+    "EMERGENCY_BUTTON_PRESSED"
+  ],
+  "emergency_actuation": {
+    "zone1": {
+      "bedroom_light": true,
+      "hall_light": true,
+      "buzzer_active": true
+    },
+    "zone2": {
+      "kitchen_light": true,
+      "bathroom_light": true,
+      "exhaust_fan_speed_pct": 100
+    }
+  },
+  "inviolable_constraints": [
+    "Normal AI decisions must not override emergency mode.",
+    "Never deactivate an emergency condition simply because normal environmental conditions changed.",
+    "Buzzer and evacuation lighting remain engaged until explicitly resolved or reset by user/medic."
+  ]
+}

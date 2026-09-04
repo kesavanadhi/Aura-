@@ -1,0 +1,18 @@
+{
+  "python.defaultInterpreterPath": "C:\\Users\\ishan\\python311\\python.exe",
+  "python.analysis.extraPaths": [
+    "${workspaceFolder}/backend",
+    "C:\\Users\\ishan\\python311\\Lib\\site-packages"
+  ],
+  "python.autoComplete.extraPaths": [
+    "${workspaceFolder}/backend",
+    "C:\\Users\\ishan\\python311\\Lib\\site-packages"
+  ],
+  "files.associations": {
+    "*.ino": "cpp"
+  },
+  "C_Cpp.errorSquiggles": "disabled",
+  "C_Cpp.intelliSenseEngine": "Tag Parser",
+  "clang.enable": false,
+  "clang.diagnostic.enable": false
+}

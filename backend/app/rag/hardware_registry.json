@@ -1,0 +1,192 @@
+{
+  "$schema": "aura/rag/hardware_registry_v1",
+  "project": "AURA",
+  "zones": {
+    "zone1": {
+      "name": "Zone 1 (Bedroom & Hallway)",
+      "controller": "ESP32",
+      "node_id": "esp32_node1",
+      "firmware_core": "ESP32 Arduino Core 3.x",
+      "sensors": {
+        "bedroom_pir": {
+          "type": "PIR",
+          "field": "occupancy",
+          "pin": 13,
+          "room": "bedroom",
+          "data_type": "boolean"
+        },
+        "bedroom_ldr": {
+          "type": "LDR",
+          "field": "ambient_lux",
+          "pin": 34,
+          "room": "bedroom",
+          "data_type": "integer",
+          "unit": "lux",
+          "range": [0, 1000]
+        },
+        "hall_pir": {
+          "type": "PIR",
+          "field": "occupancy",
+          "pin": 14,
+          "room": "hall",
+          "data_type": "boolean"
+        },
+        "hall_ultrasonic": {
+          "type": "Ultrasonic",
+          "field": "obstacle_distance_cm",
+          "trig_pin": 26,
+          "echo_pin": 27,
+          "room": "hall",
+          "data_type": "float",
+          "unit": "cm",
+          "range": [2.0, 400.0]
+        },
+        "emergency_button": {
+          "type": "PushButton",
+          "field": "emergency_button_state",
+          "pin": 4,
+          "room": "hall",
+          "data_type": "boolean",
+          "active_low": true
+        }
+      },
+      "actuators": {
+        "bedroom_light": {
+          "pin": 25,
+          "data_type": "boolean",
+          "payload_key": "bedroom_light"
+        },
+        "bedroom_fan_pwm": {
+          "pin": "18 (alt 12)",
+          "driver": "transistor_mosfet_no_relay",
+          "data_type": "integer",
+          "range": [0, 255],
+          "payload_key": "bedroom_fan_pwm",
+          "alias_key": "fan_speed_pwm"
+        },
+        "curtain_servo": {
+          "pin": 19,
+          "data_type": "integer",
+          "range": [0, 90],
+          "payload_key": "curtain_servo_angle"
+        },
+        "hall_light": {
+          "pin": 32,
+          "data_type": "boolean",
+          "payload_key": "hall_light"
+        },
+        "hall_fan_pwm": {
+          "pin": "21 (alt 23)",
+          "driver": "transistor_mosfet_no_relay",
+          "data_type": "integer",
+          "range": [0, 255],
+          "payload_key": "hall_fan_pwm"
+        },
+        "buzzer": {
+          "pin": "22 (alt 33)",
+          "data_type": "boolean",
+          "payload_key": "buzzer_active"
+        }
+      }
+    },
+    "zone2": {
+      "name": "Zone 2 (Kitchen & Bathroom)",
+      "controller": "ESP8266",
+      "node_id": "esp8266_node2",
+      "sensors": {
+        "kitchen_mq2": {
+          "type": "MQ2",
+          "field": "gas_ppm",
+          "pin": "A0",
+          "room": "kitchen",
+          "data_type": "integer",
+          "unit": "ppm_mapped_adc",
+          "range": [100, 2000],
+          "calibration_note": "Raw ADC linearly mapped to 100-2000 index. Not calibrated laboratory-grade ppm."
+        },
+        "kitchen_dht11_temp": {
+          "type": "DHT11",
+          "field": "temperature_c",
+          "pin": 4,
+          "room": "kitchen",
+          "data_type": "float",
+          "unit": "celsius",
+          "range": [0.0, 50.0]
+        },
+        "kitchen_dht11_humid": {
+          "type": "DHT11",
+          "field": "humidity_pct",
+          "pin": 4,
+          "room": "kitchen",
+          "data_type": "float",
+          "unit": "percent",
+          "range": [20.0, 90.0]
+        },
+        "bathroom_pir": {
+          "type": "PIR",
+          "field": "occupancy",
+          "pin": 12,
+          "room": "bathroom",
+          "data_type": "boolean"
+        },
+        "bathroom_ultrasonic": {
+          "type": "Ultrasonic",
+          "field": "obstacle_distance_cm",
+          "trig_pin": 13,
+          "echo_pin": 15,
+          "room": "bathroom",
+          "data_type": "float",
+          "unit": "cm",
+          "range": [2.0, 400.0]
+        }
+      },
+      "actuators": {
+        "kitchen_light": {
+          "pin": 5,
+          "data_type": "boolean",
+          "payload_key": "kitchen_light"
+        },
+        "bathroom_light": {
+          "pin": "2 (D4, alt D0=16, D3=0)",
+          "data_type": "boolean",
+          "payload_key": "bathroom_light"
+        },
+        "exhaust_fan": {
+          "pin": 14,
+          "data_type": "integer",
+          "range": [0, 100],
+          "payload_key": "exhaust_fan_speed_pct",
+          "alias_boolean_key": "exhaust_fan"
+        }
+      }
+    }
+  },
+  "forbidden_hardware": [
+    "water_leakage_sensor",
+    "water_leak_sensor",
+    "magnetic_door_sensor",
+    "door_sensor",
+    "window_sensor",
+    "co2_sensor",
+    "dedicated_smoke_sensor",
+    "zone1_temperature_sensor",
+    "zone1_humidity_sensor",
+    "zone1_gas_sensor",
+    "bedroom_temperature_sensor",
+    "bedroom_humidity_sensor",
+    "hall_temperature_sensor",
+    "bathroom_temperature_sensor",
+    "bathroom_humidity_sensor",
+    "air_quality_index_sensor"
+  ],
+  "disclaimer_responses": {
+    "bedroom_temperature": "Bedroom temperature is not available in Zone 1 hardware.",
+    "bedroom_humidity": "Bedroom humidity is not available in Zone 1 hardware.",
+    "hall_temperature": "Hall temperature is not available in Zone 1 hardware.",
+    "bathroom_temperature": "Bathroom temperature is not available in Zone 2 hardware.",
+    "bathroom_humidity": "Bathroom humidity is not available in Zone 2 hardware.",
+    "water_leak": "NOT AVAILABLE IN CURRENT AURA HARDWARE",
+    "door_contact": "NOT AVAILABLE IN CURRENT AURA HARDWARE",
+    "co2": "NOT AVAILABLE IN CURRENT AURA HARDWARE"
+  }
+}

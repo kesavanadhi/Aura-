@@ -1,0 +1,55 @@
+{
+  "$schema": "aura/rag/telemetry_schema_v1",
+  "project": "AURA",
+  "zone1": {
+    "node_id": "esp32_node1",
+    "guaranteed_structure": {
+      "node_id": "esp32_node1",
+      "bedroom": {
+        "occupancy": "boolean",
+        "ambient_lux": "integer (0-1000)",
+        "curtain_state": "\"OPEN\" | \"CLOSED\""
+      },
+      "hall": {
+        "occupancy": "boolean",
+        "obstacle_distance_cm": "float"
+      }
+    },
+    "forbidden_inferences": [
+      "temperature",
+      "humidity",
+      "gas_ppm",
+      "co2",
+      "air_quality"
+    ],
+    "missing_field_disclaimers": {
+      "temperature": "Bedroom temperature is not available in Zone 1 hardware.",
+      "humidity": "Bedroom humidity is not available in Zone 1 hardware."
+    }
+  },
+  "zone2": {
+    "node_id": "esp8266_node2",
+    "guaranteed_structure": {
+      "node_id": "esp8266_node2",
+      "kitchen": {
+        "gas_ppm": "integer (100-2000 mapped ADC)",
+        "temperature_c": "float (DHT11)",
+        "humidity_pct": "float (DHT11)"
+      },
+      "bathroom": {
+        "occupancy": "boolean",
+        "obstacle_distance_cm": "float"
+      }
+    },
+    "forbidden_inferences": [
+      "bathroom_temperature",
+      "bathroom_humidity",
+      "water_leak",
+      "co2"
+    ],
+    "missing_field_disclaimers": {
+      "bathroom_temperature": "Bathroom temperature is not available in Zone 2 hardware.",
+      "bathroom_humidity": "Bathroom humidity is not available in Zone 2 hardware."
+    }
+  }
+}

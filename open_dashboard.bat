@@ -1,0 +1,3 @@
+@echo off
+echo Opening AURA Central AI Dashboard...
+start http://localhost:8000
