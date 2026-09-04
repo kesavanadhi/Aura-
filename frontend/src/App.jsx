@@ -22,7 +22,9 @@ import {
   Mic, 
   Activity,
   Sparkles,
-  Video
+  Video,
+  HelpCircle,
+  X
 } from 'lucide-react';
 
 export default function App() {
