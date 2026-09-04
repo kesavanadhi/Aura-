@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # AURA — Autonomous User-Responsive Residential Assistant
 ### *A Cognitive, Adaptive, and Accessible Smart Living Ecosystem Powered by Edge AI, Hybrid ESP32 + ESP8266 Distributed IoT Nodes, and Google Intelligence*
 
@@ -552,3 +553,7 @@ If presenting at a venue without physical ESP32 breadboards connected:
 
 ## ⚖️ License
 This project is licensed under the **MIT License** — feel free to use and adapt for academic, research, and hackathon applications.
+=======
+# Aura-
+it for iot 
+>>>>>>> 405bb861e2ac0bd6539410b679f1ae3fd16e5c01
